@@ -27,6 +27,16 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        float horMovement = Input.GetAxisRaw("Horizontal");
+        float vertMovement = Input.GetAxisRaw("Vertical");
+
+        //if (position != Vector3.zero)
+        if (position.x != 0 || position.z != 0)
+        {
+            //controller.transform.forward = position;
+            controller.transform.forward = new Vector3(position.x, 0, position.z);
+        }
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0)
         {
@@ -44,16 +54,24 @@ public class Movement : MonoBehaviour
             jumpCount++;
         }
 
+        //transform.Translate(transform.right * horMovement * Time.deltaTime * moveSpeed);
+        //transform.Translate(transform.forward * vertMovement * Time.deltaTime * moveSpeed);
+        
         position.Set(Input.GetAxis("Horizontal") * moveSpeed, velocity.y, Input.GetAxis("Vertical") * moveSpeed);
 
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(position * Time.deltaTime);
 
-        if (position != Vector3.zero)
+        
+
+        //Vector3 moveDirection = new Vector3(horMovement, 0, vertMovement);
+        //if (moveDirection != Vector3.zero)
         {
-            controller.transform.forward = position;
+            //Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+            //controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, newRotation, Time.deltaTime * 8);
         }
+
     }
 }
 

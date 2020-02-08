@@ -36,7 +36,6 @@ namespace IconicDesignStudios.Cameras
             }
             yPosition = cTarget.position.y;
 
-
             Vector3 worldPosition = (Vector3.forward * -cDistance) + (Vector3.up * (yPosition + cHeight));
             //Debug.DrawLine(cTarget.position, worldPosition, Color.red);
 
