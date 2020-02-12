@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerOnPlatform : MonoBehaviour
 {
     public GameObject Player;
-    public Animator platAnimator;
+    //public Animator platAnimator;
 
     
     void OnTriggerEnter(Collider other)
