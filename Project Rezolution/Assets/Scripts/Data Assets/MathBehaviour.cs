@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MathBehaviour : MonoBehaviour
 {
-    public float value = 1f;
-
-
     public FloatData dataObj;
     //public FloatData damagerData;
     public FloatData[] floatDataList;
