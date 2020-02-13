@@ -45,6 +45,7 @@ namespace IconicDesignStudios.Controller
             
             float horMovement = Input.GetAxisRaw("Horizontal");
             float vertMovement = Input.GetAxisRaw("Vertical");
+            //controller.isGrounded;
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
             if (isGrounded && velocity.y < 0)
             {
