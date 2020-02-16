@@ -87,6 +87,7 @@ namespace IconicDesignStudios.Controller
 
             controller.Move(velocity * Time.deltaTime);
 
+            //Debug.Log(velocity.y);
             //Vector3 moveDirection = new Vector3(horMovement, 0, vertMovement);
             //if (moveDirection != Vector3.zero)
             {

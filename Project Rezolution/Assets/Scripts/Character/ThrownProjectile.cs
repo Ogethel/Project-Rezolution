@@ -7,19 +7,23 @@ public class ThrownProjectile : MonoBehaviour
     public float damage = .2f;
     public float throwingRate = .65f;
 
-    public GameObject startPosition;
-    public Rigidbody thrownProjectile;
+    public GameObject orignObject;
+    public Vector3 startPosition;
+    public Quaternion playerRotation;
+    public GameObject thrownProjectile;
 
     float timer;
 
+   
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        //timer += Time.deltaTime;
 
-        if(Input.GetMouseButtonDown(0) && timer >= throwingRate)
+        if(Input.GetMouseButtonDown(0)/* && timer >= throwingRate*/)
         {
-            var forward = GameObject.Find("startPosition").transform.position;
+            //startPosition = orignObject.GetComponent<Transform>();
+            //var forward = GameObject.Find("startPosition").transform.position;
             ThrowProjectile();
         }
         
@@ -27,9 +31,11 @@ public class ThrownProjectile : MonoBehaviour
 
     protected virtual void ThrowProjectile()
     {
-        timer = 0f;
+        //timer = 0f;
 
-        Rigidbody clone;
+        Instantiate(thrownProjectile, startPosition, playerRotation);
+        Debug.Log("Throw");
+
         //clone = Instantiate(ThrownProjectile, transform.position, transform.rotation);
 
     }
