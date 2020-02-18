@@ -16,7 +16,7 @@ namespace IconicDesignStudios.Controller
         [Header("Player Variables")]
         public Vector3 position;       
         public float moveSpeed = 10f, gravity = 9.81f, JumpSpeed = 30f;
-        private int jumpCount = 0;
+        private int jumpCount;
         public int jumpCountMax = 2;
 
         [Header("Grounded Variables")]

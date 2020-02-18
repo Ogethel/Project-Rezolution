@@ -2,76 +2,115 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
-
-public class Movement : MonoBehaviour
+namespace IconicDesignStudios.Controller
 {
-    public Vector3 position;
-    public CharacterController controller;
+    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(IDS_RBPlayer_Inputs))]
 
-    public float moveSpeed = 10f, gravity = 9.81f, JumpSpeed = 30f;
-    private int jumpCount;
-    public int jumpCountMax = 2;
-
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
-
-    Vector3 velocity;
-    bool isGrounded;
-
-    private void Start()
+    public class Movement : MonoBehaviour
     {
-        controller = GetComponent<CharacterController>();
-    }
+        #region Variables
+        [Header("Required Components")]
+        private IDS_RBPlayer_Inputs input;
+        public CharacterController controller;
 
-    void Update()
-    {
-        float horMovement = Input.GetAxisRaw("Horizontal");
-        float vertMovement = Input.GetAxisRaw("Vertical");
+        [Header("Player Variables")]
+        public Vector3 position;
+        public float moveSpeed = 10f, gravity = 9.81f, JumpSpeed = 30f;
+        private int jumpCount;
+        public int jumpCountMax = 2;
 
-        //if (position != Vector3.zero)
-        if (position.x != 0 || position.z != 0)
+        [Header("Grounded Variables")]
+        public Transform groundCheck;
+        public float groundDistance = 0.4f;
+        public LayerMask groundMask;
+        Vector3 velocity;
+        bool isGrounded;
+
+        [Header("Aim Direction Properties")]
+        public Transform aimDirTransform;
+
+        [Header("Reticle Properties")]
+        public Transform reticleTransform;
+
+        #endregion
+
+        private void Start()
         {
-            //controller.transform.forward = position;
-            controller.transform.forward = new Vector3(position.x, 0, position.z);
+            controller = GetComponent<CharacterController>();
+            input = GetComponent<IDS_RBPlayer_Inputs>();
         }
 
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0)
+        void Update()
         {
-            velocity.y = -2f;
+            float horMovement = Input.GetAxisRaw("Horizontal");
+            float vertMovement = Input.GetAxisRaw("Vertical");
+
+            //if (position != Vector3.zero)
+            if (position.x != 0 || position.z != 0)
+            {
+                //controller.transform.forward = position;
+                controller.transform.forward = new Vector3(position.x, 0, position.z);
+            }
+
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
+
+            if (isGrounded && jumpCount <= jumpCountMax)
+            {
+                jumpCount = 0;
+            }
+
+            if (Input.GetButtonDown("Jump") && jumpCount < jumpCountMax)
+            {
+                velocity.y = Mathf.Sqrt(JumpSpeed * -2f * gravity);
+                jumpCount++;
+            }
+
+            if (controller && input)
+            {
+                HandleReticle();
+                HandleAimDir();
+            }
+
+            //transform.Translate(transform.right * horMovement * Time.deltaTime * moveSpeed);
+            //transform.Translate(transform.forward * vertMovement * Time.deltaTime * moveSpeed);
+
+            position.Set(Input.GetAxis("Horizontal") * moveSpeed, velocity.y, Input.GetAxis("Vertical") * moveSpeed);
+
+            velocity.y += gravity * Time.deltaTime;
+
+            controller.Move(position * Time.deltaTime);
+
+            /*Vector3 moveDirection = new Vector3(horMovement, 0, vertMovement);
+            //if (moveDirection != Vector3.zero)
+            {
+                //Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+                //controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, newRotation, Time.deltaTime * 8);
+            }
+            */
         }
 
-        if (isGrounded && jumpCount <= jumpCountMax)
+        protected virtual void HandleAimDir()
         {
-            jumpCount = 0;
+            if (aimDirTransform)
+            {
+                Vector3 aimLookDir = input.ReticalPosition - aimDirTransform.position;
+                aimLookDir.y = 0f;
+                aimDirTransform.rotation = Quaternion.LookRotation(aimLookDir);
+            }
         }
 
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpCountMax)
+        protected virtual void HandleReticle()
         {
-            velocity.y = Mathf.Sqrt(JumpSpeed * -2f * gravity);
-            jumpCount++;
+            if (reticleTransform)
+            {
+                reticleTransform.position = input.ReticalPosition;
+            }
         }
-
-        //transform.Translate(transform.right * horMovement * Time.deltaTime * moveSpeed);
-        //transform.Translate(transform.forward * vertMovement * Time.deltaTime * moveSpeed);
-        
-        position.Set(Input.GetAxis("Horizontal") * moveSpeed, velocity.y, Input.GetAxis("Vertical") * moveSpeed);
-
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(position * Time.deltaTime);
-
-        
-
-        //Vector3 moveDirection = new Vector3(horMovement, 0, vertMovement);
-        //if (moveDirection != Vector3.zero)
-        {
-            //Quaternion newRotation = Quaternion.LookRotation(moveDirection);
-            //controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, newRotation, Time.deltaTime * 8);
-        }
-
     }
 }
 
