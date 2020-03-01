@@ -30,6 +30,7 @@ namespace IconicDesignStudios.Controller
 
         [Header("Aim Direction Properties")]
         public Transform aimDirTransform;
+        public ProjectileLauncherController projectile;
 
         [Header("Reticle Properties")]
         public Transform reticleTransform;
@@ -60,15 +61,17 @@ namespace IconicDesignStudios.Controller
                 velocity.y = -2f;
             }
 
+            /*
             if (isGrounded && jumpCount <= jumpCountMax)
             {
                 jumpCount = 0;
             }
+            */
 
-            if (Input.GetButtonDown("Jump") && jumpCount < jumpCountMax)
+            if (Input.GetButtonDown("Jump") && isGrounded /*&& jumpCount < jumpCountMax*/)
             {
                 velocity.y = Mathf.Sqrt(JumpSpeed * -2f * gravity);
-                jumpCount++;
+                //jumpCount++;
             }
 
             if (controller && input)
@@ -93,6 +96,15 @@ namespace IconicDesignStudios.Controller
                 //controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, newRotation, Time.deltaTime * 8);
             }
             */
+            if (Input.GetMouseButtonDown(0))
+            {
+                projectile.isFiring = true;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                projectile.isFiring = false;
+            }
         }
 
         void OnControllerColliderHit(ControllerColliderHit hit)
