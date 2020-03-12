@@ -13,6 +13,8 @@ namespace IconicDesignStudios.Controller
         [Header("Required Components")]
         private IDS_RBPlayer_Inputs input;
         public CharacterController controller;
+        public delegate void OnFocusChanged(Interactable newFocus);
+        public OnFocusChanged onFocusChangedCallback;
 
         [Header("Player Variables")]
         public Vector3 position;
@@ -20,11 +22,13 @@ namespace IconicDesignStudios.Controller
         private int jumpCount;
         public int jumpCountMax = 2;
         float pushPower = 2.0f;
+        public Interactable focus;
 
         [Header("Grounded Variables")]
         public Transform groundCheck;
         public float groundDistance = 0.4f;
         public LayerMask groundMask;
+        public LayerMask interactionMask;
         Vector3 velocity;
         bool isGrounded;
 
@@ -34,6 +38,7 @@ namespace IconicDesignStudios.Controller
 
         [Header("Reticle Properties")]
         public Transform reticleTransform;
+        Camera cam;
 
         #endregion
 
@@ -105,6 +110,19 @@ namespace IconicDesignStudios.Controller
             {
                 projectile.isFiring = false;
             }
+            // If we press right mouse
+            if (Input.GetMouseButtonDown(1))
+            {
+                // Shoot out a ray
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                // If we hit
+                if (Physics.Raycast(ray, out hit, 100f, interactionMask))
+                {
+                    SetFocus(hit.collider.GetComponent<Interactable>());
+                }
+            }
         }
 
         void OnControllerColliderHit(ControllerColliderHit hit)
@@ -150,6 +168,29 @@ namespace IconicDesignStudios.Controller
             {
                 reticleTransform.position = input.ReticalPosition;
             }
+        }
+        void SetFocus(Interactable newFocus)
+        {
+            if (onFocusChangedCallback != null)
+                onFocusChangedCallback.Invoke(newFocus);
+
+            // If our focus has changed
+            if (focus != newFocus && focus != null)
+            {
+                // Let our previous focus know that it's no longer being focused
+                focus.OnDefocused();
+            }
+
+            // Set our focus to what we hit
+            // If it's not an interactable, simply set it to null
+            focus = newFocus;
+
+            if (focus != null)
+            {
+                // Let our focus know that it's being focused
+                focus.OnFocused(transform);
+            }
+
         }
     }
 }
