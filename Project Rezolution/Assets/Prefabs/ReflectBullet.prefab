@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 375378728256546795}
   - component: {fileID: 5090093191035532556}
   - component: {fileID: 8372346185971146389}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ReflectBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2561
   refProjectile: {fileID: 6627452406329346091}
   projectile: {fileID: 1425994493781819977}

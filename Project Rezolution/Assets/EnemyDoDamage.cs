@@ -10,9 +10,11 @@ public class EnemyDoDamage : MonoBehaviour
     // Use this for initialization
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Bullet")
+        {
             Instantiate(effect, objToDestroy.transform.position, objToDestroy.transform.rotation);
-        Destroy(objToDestroy);
+            Destroy(objToDestroy);
+        }
     }
 }
 
