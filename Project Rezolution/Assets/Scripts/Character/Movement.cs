@@ -85,11 +85,17 @@ namespace IconicDesignStudios.Controller
                 HandleAimDir();
             }
 
+
             //transform.Translate(transform.right * horMovement * Time.deltaTime * moveSpeed);
             //transform.Translate(transform.forward * vertMovement * Time.deltaTime * moveSpeed);
 
             position.Set(Input.GetAxis("Horizontal") * moveSpeed, velocity.y, Input.GetAxis("Vertical") * moveSpeed);
-
+/*
+            if (!Input.anyKey)
+            {
+                position.x = 0f;
+            }
+            */
             velocity.y += gravity * Time.deltaTime;
 
             controller.Move(position * Time.deltaTime);
