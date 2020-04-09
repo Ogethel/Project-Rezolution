@@ -10,7 +10,7 @@ using Object = UnityEngine.Object;
 // I can change this from a ScriptableObject to NameID so FloatDatas can be Idenditfied
 public class FloatData : NameID
 {
-    [SerializeField] protected float value;
+    [SerializeField] public float value;
 
     public virtual float Value
     {
