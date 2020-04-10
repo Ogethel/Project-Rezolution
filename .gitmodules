@@ -1,0 +1,9 @@
+[submodule "Project Rezolution\\Assets\\MyTools\\Anthony's Tools"]
+	path = Project Rezolution\\Assets\\MyTools\\Anthony's Tools
+	url = https://github.com/anthonyromrell/CharacterDev.git
+[submodule "Assets\\MyTools\\Anthony's Tools"]
+	path = Assets\\MyTools\\Anthony's Tools
+	url = https://github.com/anthonyromrell/CharacterDev.git
+[submodule "Assets/My Tools"]
+	path = Assets/My Tools
+	url = https://github.com/anthonyromrell/CharacterDev.git
