@@ -80,7 +80,7 @@ public class HealthHearts : MonoBehaviour
     }
     void EndGame ()
     {
-        SceneManager.LoadScene("LockedCamera");
+        SceneManager.LoadScene("01_LockedCamera");
     }
 
 }
