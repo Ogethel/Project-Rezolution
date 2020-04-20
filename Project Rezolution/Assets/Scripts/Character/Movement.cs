@@ -18,11 +18,12 @@ namespace IconicDesignStudios.Controller
 
         [Header("Player Variables")]
         public Vector3 position;
-        public float moveSpeed = 10f, gravity = 9.81f, JumpSpeed = 30f;
+        public float moveSpeed = 10f, gravity = 9.81f, JumpSpeed = 30f, boostSpeed = 3f, regSpeed = 0f;
         private int jumpCount;
         public int jumpCountMax = 2;
         float pushPower = 2.0f;
         public Interactable focus;
+        public bool iAmSpeed = false;
 
         [Header("Grounded Variables")]
         public Transform groundCheck;
@@ -46,10 +47,32 @@ namespace IconicDesignStudios.Controller
         {
             controller = GetComponent<CharacterController>();
             input = GetComponent<IDS_RBPlayer_Inputs>();
+            regSpeed = moveSpeed;
         }
+      
+
 
         void Update()
         {
+
+            if (Input.GetKeyUp("left shift"))
+            {
+                if (iAmSpeed == true)
+                {
+                    iAmSpeed = false;
+                    UpdateMoveSpeed();
+                }
+            }
+
+            if (Input.GetKeyDown("left shift"))
+            {
+                if(iAmSpeed == false)
+                {
+                    iAmSpeed = true;
+                    UpdateMoveSpeed();
+                }
+            }
+
             float horMovement = Input.GetAxisRaw("Horizontal");
             float vertMovement = Input.GetAxisRaw("Vertical");
 
@@ -107,6 +130,8 @@ namespace IconicDesignStudios.Controller
                 //controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation, newRotation, Time.deltaTime * 8);
             }
             */
+
+
             if (Input.GetMouseButtonDown(0))
             {
                 projectile.isFiring = true;
@@ -156,6 +181,20 @@ namespace IconicDesignStudios.Controller
 
             // Apply the push
             body.velocity = pushDir * pushPower;
+        }
+
+        protected virtual void UpdateMoveSpeed()
+        {
+            if (iAmSpeed == true)
+            {
+                float newSpeed = boostSpeed;
+                moveSpeed = newSpeed;
+            }
+            if (iAmSpeed == false)
+            {
+                float newSpeed = regSpeed;
+                moveSpeed = newSpeed;
+            }
         }
 
         protected virtual void HandleAimDir()
