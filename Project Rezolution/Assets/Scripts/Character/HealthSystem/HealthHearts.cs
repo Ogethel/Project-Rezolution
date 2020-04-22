@@ -69,15 +69,29 @@ public class HealthHearts : MonoBehaviour
         {
             int newHeartTotal = healthHearts - 1;
             healthHearts = newHeartTotal;
+
             if (healthHearts < 1)
-            {
-             
+            {             
                 timerActive = true;
                 gameOver.enabled = true;
             }
         }
 
+        if (other.gameObject.tag == "Health")
+        {
+            int newHeartTotal = healthHearts + 1;
+            healthHearts = newHeartTotal;
+
+            if (healthHearts > numOfHearts)
+            {
+                healthHearts = numOfHearts;
+            }
+            GameObject objectToDestroy = other.gameObject;
+            Destroy(objectToDestroy);
+        }
+
     }
+
     void EndGame ()
     {
         SceneManager.LoadScene("01_LockedCamera");

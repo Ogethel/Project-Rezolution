@@ -107,6 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 2561
+    m_Bits: 18944
   refProjectile: {fileID: 6627452406329346091}
   projectile: {fileID: 1425994493781819977}

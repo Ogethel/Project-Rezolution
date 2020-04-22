@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - PressurePlate
   - Warp
+  - Health
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Interactables
   - Bullet
   - GrapplePoint
-  - 
+  - Enemy
   - 
   - 
   - 

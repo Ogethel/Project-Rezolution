@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5127017255187478985}
   - component: {fileID: 5127017255187478984}
   - component: {fileID: 5127017255187478991}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ReboundObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
