@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4893074468873018352}
   - component: {fileID: 4893074468873018354}
   - component: {fileID: 4893074468873018353}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: DamageCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4893074469197540174}
   - component: {fileID: 4893074469197540173}
   - component: {fileID: 4893074469197540163}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4893074469356500728}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: HealthBarPositon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

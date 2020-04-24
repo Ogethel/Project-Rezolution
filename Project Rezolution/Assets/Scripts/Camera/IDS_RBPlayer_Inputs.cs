@@ -8,6 +8,8 @@ namespace IconicDesignStudios.Controller
         #region Variables
         [Header("Input Properties")]
         public Camera camera;
+        public LayerMask groundMask;
+        public GameObject crosshair;
         #endregion
 
         #region Properties
@@ -42,6 +44,7 @@ namespace IconicDesignStudios.Controller
             if (camera)
             {
                 HandleInputs();
+                
             }
         }
 
@@ -57,7 +60,7 @@ namespace IconicDesignStudios.Controller
         {
             Ray screenRay = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(screenRay, out hit))
+            if(Physics.Raycast(screenRay, out hit, groundMask))
             {
                 reticalPosition = hit.point;
                 reticalNormal = hit.normal;

@@ -9,6 +9,12 @@ TagManager:
   - PressurePlate
   - Warp
   - Health
+  - PushBlock
+  - Wind
+  - Fire
+  - Earth
+  - Ice
+  - SpellPoint
   layers:
   - Default
   - TransparentFX

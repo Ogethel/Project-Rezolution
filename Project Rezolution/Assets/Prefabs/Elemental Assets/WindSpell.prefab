@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8497524595200098086}
   - component: {fileID: 375378728256546795}
   - component: {fileID: 5090093191035532556}
-  - component: {fileID: 8372346185971146389}
+  - component: {fileID: 1864887309921194285}
   m_Layer: 12
   m_Name: WindSpell
   m_TagString: Bullet
@@ -93,7 +93,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8372346185971146389
+--- !u!114 &1864887309921194285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,11 +102,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6627452406329346091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f448edb59cc8e6140a4d0fada6c7ac69, type: 3}
+  m_Script: {fileID: 11500000, guid: a588b1f2e19e2bc43ac2341e5551b80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 18944
+    m_Bits: 513
+  onDestroy: {fileID: 1292567119200161407, guid: f94b2faa7e5d6aa4fa98351351c57e38,
+    type: 3}
   refProjectile: {fileID: 6627452406329346091}
-  projectile: {fileID: 1425994493781819977}
+  speed: 30
+  timer: 2
+  timerActive: 0

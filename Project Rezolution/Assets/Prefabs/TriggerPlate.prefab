@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4891499133486960428}
   - component: {fileID: 977472918243669132}
-  - component: {fileID: 6487127234310169120}
+  - component: {fileID: 4469420740749743928}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: PressurePlate
@@ -40,12 +40,12 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125457527984467071}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 10.299316, y: 1, z: 10.322571}
   m_Center: {x: 5.0129395, y: 0, z: 4.994293}
---- !u!114 &6487127234310169120
+--- !u!114 &4469420740749743928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,9 +54,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 125457527984467071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4c1e9575d3ad4749856f8a077e7e9ed, type: 3}
+  m_Script: {fileID: 11500000, guid: cbd9121305cc03043a77e3ab777c84aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableObject: {fileID: 0}
+  disableObject: {fileID: 0}
 --- !u!1 &2884645384918145313
 GameObject:
   m_ObjectHideFlags: 0
