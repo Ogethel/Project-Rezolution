@@ -108,7 +108,7 @@ public class SpawnReflectProjectile : MonoBehaviour
             if (earthActive && timeShots <= 0f)
             {
                 Instantiate(projectileEarth, transform.position, transform.rotation);
-                timeShots = 5f;
+                timeShots = .55f;
             }
         }
     }

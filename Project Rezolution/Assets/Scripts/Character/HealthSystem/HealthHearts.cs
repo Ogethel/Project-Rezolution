@@ -13,6 +13,8 @@ public class HealthHearts : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    public float canBeHurt=1f;
+
     public bool timerActive = false;
 
     public Text gameOver;
@@ -24,7 +26,7 @@ public class HealthHearts : MonoBehaviour
 
     private void Update()
     {
-        
+        canBeHurt = canBeHurt - Time.deltaTime;
         if(healthHearts > numOfHearts)
         {
             healthHearts = numOfHearts;
@@ -65,7 +67,7 @@ public class HealthHearts : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && canBeHurt <= 0f)
         {
             int newHeartTotal = healthHearts - 1;
             healthHearts = newHeartTotal;
@@ -75,6 +77,7 @@ public class HealthHearts : MonoBehaviour
                 timerActive = true;
                 gameOver.enabled = true;
             }
+            canBeHurt = 1f;
         }
 
         if (other.gameObject.tag == "Health")
