@@ -15,6 +15,7 @@ TagManager:
   - Earth
   - Ice
   - SpellPoint
+  - HealthUpgrade
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,7 @@ public class HealthHearts : MonoBehaviour
     public int healthHearts;
     public int numOfHearts;
 
+    public GameObject endGame;
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -22,6 +23,7 @@ public class HealthHearts : MonoBehaviour
     private void Start()
     {
         gameOver.enabled = false;
+        endGame.SetActive(false);
     }
 
     private void Update()
@@ -93,11 +95,22 @@ public class HealthHearts : MonoBehaviour
             Destroy(objectToDestroy);
         }
 
+        if (other.gameObject.tag == "HealthUpgrade" && canBeHurt <= 0f)
+        {
+            int newHeartTotal = numOfHearts + 1;
+            numOfHearts = newHeartTotal;
+
+            int currentHearts = numOfHearts;
+            healthHearts = currentHearts;
+
+            canBeHurt = 1f;
+        }
     }
 
     void EndGame ()
     {
-        SceneManager.LoadScene("01_LockedCamera");
+        endGame.SetActive(true);
+        //SceneManager.LoadScene("01_LockedCamera");
     }
 
 }
